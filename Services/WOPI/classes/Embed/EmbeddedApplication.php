@@ -162,6 +162,12 @@ class EmbeddedApplication
             return [];
         }
 
+        // begin-patch wopi_ui_language
+        if (!preg_grep('/^(?:lang|ui)=/i', $appendices)) {
+            $appendices[] = 'lang=' . rawurlencode($this->substitutions['lang']);
+        }
+        // end-patch wopi_ui_language
+
         return $appendices;
     }
 }
